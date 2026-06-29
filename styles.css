@@ -730,3 +730,143 @@ body {
         width: 100%;
     }
 }
+
+/* === Responsive Design === */
+
+/* Tablet and below */
+@media (max-width: 1024px) {
+    .preview-edit-layout {
+        flex-direction: column;
+    }
+
+    .preview-side {
+        position: static;
+        width: 100%;
+        min-height: 350px;
+    }
+
+    .editor-side {
+        max-height: none;
+        width: 100%;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .app-container {
+        padding: 10px;
+    }
+
+    .app-header {
+        flex-direction: column;
+        gap: 12px;
+        padding: 15px 20px;
+        text-align: center;
+    }
+
+    .app-header h1 {
+        font-size: 1.4em;
+    }
+
+    .header-actions {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .step {
+        padding: 15px;
+    }
+
+    .step h2 {
+        font-size: 1.2em;
+    }
+
+    .btn-large {
+        padding: 12px 20px;
+        font-size: 1em;
+    }
+
+    .preview-side {
+        min-height: 280px;
+        padding: 10px;
+    }
+
+    .tombstone-box {
+        padding: 3% 4%;
+    }
+
+    .control-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .control-row label {
+        min-width: auto;
+    }
+
+    .control-row input[type="range"] {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .line-editor-controls {
+        gap: 6px;
+    }
+
+    .line-editor-controls select,
+    .line-editor-controls input[type="number"] {
+        font-size: 0.85em;
+    }
+
+    .step-actions {
+        flex-direction: column;
+    }
+
+    .step-actions .btn {
+        width: 100%;
+    }
+
+    .final-actions {
+        flex-direction: column;
+    }
+
+    .final-actions .btn {
+        width: 100%;
+    }
+
+    .ruler-top {
+        font-size: 0.75em;
+    }
+
+    .ruler-side {
+        font-size: 0.75em;
+        padding: 0 5px;
+    }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+    .app-header h1 {
+        font-size: 1.2em;
+    }
+
+    .header-actions .btn {
+        padding: 8px 12px;
+        font-size: 0.85em;
+    }
+
+    .line-editor-item {
+        padding: 8px;
+    }
+
+    .line-editor-move button {
+        width: 24px;
+        height: 24px;
+        font-size: 0.85em;
+    }
+
+    .line-editor-text {
+        font-size: 0.9em;
+    }
+}
