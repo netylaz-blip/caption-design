@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>עיצוב מצבות — Caption Design</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>✡ עיצוב מצבות</h1>
+            <div class="header-actions">
+                <button id="btn-new" class="btn btn-primary">עיצוב חדש</button>
+                <button id="btn-load" class="btn btn-secondary">טעינת עיצוב שמור</button>
+            </div>
+        </header>
+
+        <main class="app-main">
+            <!-- Step 1: Initial Discovery -->
+            <section id="step-1" class="step active">
+                <h2>שלב 1 — הגדרות בסיסיות</h2>
+
+                <div class="form-group">
+                    <label for="stone-width">רוחב האבן (ס"מ):</label>
+                    <input type="number" id="stone-width" min="20" max="200" placeholder="לדוגמה: 60">
+                </div>
+
+                <div class="form-group">
+                    <label for="stone-height">גובה האבן (ס"מ):</label>
+                    <input type="number" id="stone-height" min="50" max="300" placeholder="לדוגמה: 120">
+                </div>
+
+                <div class="form-group">
+                    <label for="stone-text">הטקסט לחריטה (עברית בלבד):</label>
+                    <textarea id="stone-text" rows="10" placeholder="הזיני את הטקסט המלא כפי שצריך להופיע על המצבה.&#10;כל שורה בשורה נפרדת."></textarea>
+                    <small class="hint">הזיני את הטקסט בדיוק כפי שצריך להיחרט — ללא תיקונים אוטומטיים</small>
+                    <div id="text-error" class="error-msg hidden">שגיאה: ניתן להזין עברית בלבד</div>
+                </div>
+
+                <div class="form-group">
+                    <label>תבנית עיצוב:</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="template" value="master" checked>
+                            TEMPLATE_MASTER (תבנית ברירת מחדל)
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="template" value="custom">
+                            תבנית מותאמת אישית
+                        </label>
+                    </div>
+                </div>
+
+                <div id="custom-template-section" class="form-group hidden">
+                    <label for="custom-template">הגדרת תבנית מותאמת:</label>
+                    <textarea id="custom-template" rows="5" placeholder="תארי את מבנה התבנית הרצוי..."></textarea>
+                </div>
+
+                <button id="btn-generate" class="btn btn-primary btn-large">צור תצוגה מקדימה ←</button>
+            </section>
+
+            <!-- Step 2: Preview & Edit -->
+            <section id="step-preview" class="step">
+                <h2>שלב 2 — תצוגה מקדימה ועריכה</h2>
+                
+                <div class="preview-edit-layout">
+                    <div id="preview-container" class="preview-side"></div>
+                    
+                    <div class="editor-side">
+                        <h3>עריכת שורות:</h3>
+                        <div id="lines-editor"></div>
+
+                        <hr class="editor-divider">
+
+                        <h3>הגדרות כלליות:</h3>
+                        <div class="control-row">
+                            <label>ריווח כללי בין שורות:</label>
+                            <input type="range" id="line-spacing" min="1" max="3" step="0.1" value="1.5">
+                            <span id="line-spacing-val">1.5</span>
+                        </div>
+                        <div class="control-row">
+                            <label>יישור כללי:</label>
+                            <select id="text-align">
+                                <option value="center" selected>מרכז</option>
+                                <option value="right">ימין</option>
+                                <option value="left">שמאל</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-actions">
+                    <button id="btn-back" class="btn btn-secondary">→ חזרה לשלב 1</button>
+                    <button id="btn-approve" class="btn btn-primary">אישור סופי ושמירה ←</button>
+                </div>
+            </section>
+
+            <!-- Step 3: Final Approval -->
+            <section id="step-final" class="step">
+                <h2>שלב 3 — אישור סופי</h2>
+                <div id="final-preview"></div>
+                <div class="final-info">
+                    <p class="success-msg">✓ העיצוב נעול ומוכן לייצוא</p>
+                    <div class="final-actions">
+                        <button id="btn-save" class="btn btn-primary">שמור עיצוב</button>
+                        <button id="btn-export-pdf" class="btn btn-primary">ייצוא PDF</button>
+                        <button id="btn-edit-again" class="btn btn-secondary">חזרה לעריכה</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Saved Designs Modal -->
+        <div id="modal-saved" class="modal hidden">
+            <div class="modal-content">
+                <h2>עיצובים שמורים</h2>
+                <div id="saved-list"></div>
+                <button id="btn-close-modal" class="btn btn-secondary">סגור</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
