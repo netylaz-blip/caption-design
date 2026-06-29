@@ -180,7 +180,7 @@
 
             const selectedClass = (interactive && idx === state.selectedLine) ? ' selected' : '';
             const clickable = interactive ? ` line-clickable${selectedClass}` : '';
-            const clickHandler = interactive ? ` onclick="window._selectLine(${idx})"` : '';
+            const clickHandler = interactive ? ` onclick="window._selectLine(${idx})" ontouchend="window._selectLine(${idx}); event.preventDefault();"` : '';
             const inlineStyle = `font-size: ${style.fontSize}em; font-weight: ${style.bold ? 'bold' : 'normal'}; text-align: ${style.align};`;
 
             linesHTML += `<div class="line${clickable}" style="${inlineStyle}"${clickHandler}>${item.text}</div>`;
@@ -234,6 +234,11 @@
 
         els.editPanel.classList.remove('hidden');
         renderPreview(els.previewContainer, true);
+
+        // Scroll edit panel into view (important for mobile)
+        setTimeout(function () {
+            els.editPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 100);
     };
 
     // Close panel
